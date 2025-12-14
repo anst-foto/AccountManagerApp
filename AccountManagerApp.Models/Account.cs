@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace AccountManagerApp.Models;
 
@@ -10,5 +11,8 @@ public class Account
     public string? Description { get; set; }
     public bool IsActive { get; set; } = true;
 
-    public User User { get; set; }
+    public string LastName { get; set; }
+    public string FirstName { get; set; }
+    public string Email { get; set; }
+    public ICollection<string> PhoneNumbers { get; set; } = [];
 }
