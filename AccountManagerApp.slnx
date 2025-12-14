@@ -6,4 +6,5 @@
     <File Path="compose.yaml" />
   </Folder>
   <Project Path="AccountManagerApp.DAL/AccountManagerApp.DAL.csproj" />
+  <Project Path="AccountManagerApp.Models/AccountManagerApp.Models.csproj" />
 </Solution>
