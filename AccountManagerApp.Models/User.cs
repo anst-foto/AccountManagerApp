@@ -9,5 +9,6 @@ public class User
     public ICollection<string> PhoneNumbers { get; set; } = [];
     public bool IsActive { get; set; } = true;
 
+    public Guid AccountId { get; set; }
     public Account Account { get; set; }
 }
