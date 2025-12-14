@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/others/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+  </Folder>
+  <Project Path="AccountManagerApp.DAL/AccountManagerApp.DAL.csproj" />
+</Solution>
