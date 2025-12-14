@@ -21,4 +21,6 @@ public class DataBaseContextFactory : IDesignTimeDbContextFactory<DataBaseContex
 
         return new DataBaseContext(optionsBuilder.Options);
     }
+
+    public static DataBaseContext Create() => new DataBaseContextFactory().CreateDbContext([]);
 }
