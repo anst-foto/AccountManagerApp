@@ -4,6 +4,7 @@
     <File Path=".env" />
     <File Path=".gitignore" />
     <File Path="compose.yaml" />
+    <File Path="Directory.Build.props" />
   </Folder>
   <Project Path="AccountManagerApp.DAL/AccountManagerApp.DAL.csproj" />
   <Project Path="AccountManagerApp.Models/AccountManagerApp.Models.csproj" />
