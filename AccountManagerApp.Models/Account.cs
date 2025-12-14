@@ -15,4 +15,7 @@ public class Account
     public string FirstName { get; set; }
     public string Email { get; set; }
     public ICollection<string> PhoneNumbers { get; set; } = [];
+
+    public string ShortId => Id.ToString()[..8];
+    public string FullName => $"{LastName} {FirstName}";
 }
