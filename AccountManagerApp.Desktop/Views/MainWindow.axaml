@@ -1,0 +1,82 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AccountManagerApp.Desktop.ViewModels"
+        xmlns:c="using:AccountManagerApp.Desktop.Components"
+        xmlns:m="using:AccountManagerApp.Models"
+
+        x:Class="AccountManagerApp.Desktop.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AccountManagerApp.Desktop">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Window.Resources>
+        <DataTemplate x:Key="Template_Account"
+                      DataType="{x:Type TypeName=m:Account}">
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="#{0}: {1}">
+                        <Binding Path="ShortId"
+                                 Mode="OneWay"
+                                 UpdateSourceTrigger="PropertyChanged"/>
+                        <Binding Path="FullName"
+                                 Mode="OneWay"
+                                 UpdateSourceTrigger="PropertyChanged"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Подключиться"
+                      Command="{Binding Path=LoadCommand}"/>
+        </Menu>
+
+        <StackPanel Orientation="Horizontal"
+                    DockPanel.Dock="Top">
+            <c:InputComponent Label="Найти"
+                              Value="{Binding Path=SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <Grid ColumnDefinitions="*, 2*">
+            <ListBox ItemsSource="{Binding Path=Accounts}"
+                     SelectedItem="{Binding Path=SelectedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     SelectionMode="Single"
+                     ItemTemplate="{StaticResource ResourceKey=Template_Account}"
+                     Grid.Column="0"/>
+
+            <StackPanel Orientation="Vertical"
+                        Grid.Column="1">
+                <c:InputComponent Label="ID"
+                                  Value="{Binding Path=Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <c:InputComponent Label="Логин"
+                                  Value="{Binding Path=Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <c:InputComponent Label="Пароль"
+                                  Value="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <c:InputComponent Label="Фамилия"
+                                  Value="{Binding Path=LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <c:InputComponent Label="Имя"
+                                  Value="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <c:InputComponent Label="email"
+                                  Value="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Телефоны"/>
+                    <ListBox ItemsSource="{Binding Path=PhoneNumbers}" />
+                </StackPanel>
+
+                <c:InputComponent Label="Описание"
+                                  Value="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <CheckBox Content="Удалён?"
+                          IsChecked="{Binding Path=IsActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>
